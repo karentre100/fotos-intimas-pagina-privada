@@ -1,6 +1,6 @@
 body {
-    background: #fff0f6 url('https://img.freepik.com/vector-gratis/fondo-flores-rosadas_23-2148426767.jpg');
-    font-family: 'Comic Neue', cursive;
+    background: #ffb6c1;
+    font-family: 'Arial Rounded MT Bold', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,11 +12,13 @@ body {
     background: rgba(255, 255, 255, 0.95);
     padding: 2rem;
     border-radius: 20px;
-    box-shadow: 0 0 25px rgba(255, 182, 193, 0.3);
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.2);
     width: 90%;
-    max-width: 400px;
+    max-width: 450px;
     text-align: center;
-    border: 2px solid #ffb3c6;
+    border: 3px solid #ff69b4;
+    position: relative;
+    overflow: hidden;
 }
 
 .header {
@@ -24,29 +26,30 @@ body {
 }
 
 h1 {
-    color: #ff69b4;
-    font-size: 2em;
+    color: #ff1493;
+    font-size: 2.2em;
     margin: 0.5rem 0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
 .decor {
-    font-size: 1.8em;
-    animation: bounce 1.5s infinite;
+    font-size: 2em;
+    animation: float 2s ease-in-out infinite;
 }
 
-@keyframes bounce {
+@keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
 }
 
 .input-group {
-    margin: 1.2rem 0;
+    margin: 1.5rem 0;
     text-align: left;
     position: relative;
 }
 
 label {
-    color: #ff85a2;
+    color: #ff69b4;
     display: block;
     margin-bottom: 0.5rem;
     font-size: 0.95em;
@@ -65,31 +68,38 @@ input {
 input:focus {
     outline: none;
     border-color: #ff69b4;
-    box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.3);
 }
 
 button {
-    background: linear-gradient(45deg, #ff85a2, #ff69b4);
+    background: linear-gradient(45deg, #ff69b4, #ff1493);
     color: white;
-    padding: 12px 35px;
+    padding: 15px 40px;
     border: none;
-    border-radius: 25px;
+    border-radius: 30px;
     cursor: pointer;
-    font-size: 16px;
-    margin-top: 1rem;
+    font-size: 18px;
+    margin-top: 1.5rem;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 button:hover {
     transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+    box-shadow: 0 5px 20px rgba(255, 105, 180, 0.4);
+}
+
+button::after {
+    content: '🌺';
+    margin-left: 10px;
 }
 
 .error-msg {
     color: #ff4444;
     font-size: 0.8em;
     position: absolute;
-    bottom: -18px;
+    bottom: -20px;
     left: 5px;
     display: none;
 }
@@ -99,20 +109,27 @@ button:hover {
 }
 
 #loader {
-    margin: 1.5rem 0;
+    margin: 2rem 0;
     color: #ff69b4;
-    font-size: 1.1em;
+    font-size: 1.2em;
 }
 
 #errorMsg {
     margin: 1rem 0;
-    padding: 10px;
+    padding: 15px;
     background: #ffe6e6;
-    border-radius: 5px;
+    border-radius: 10px;
+    animation: shake 0.5s;
 }
 
 .disclaimer {
     font-size: 0.75em;
     color: #666;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
 }
