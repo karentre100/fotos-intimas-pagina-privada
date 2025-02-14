@@ -3,28 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificación Exitosa</title>
+    <title>¡Verificación Exitosa!</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container contenedor-mensaje">
-        <div class="gran-texto">⚠️ NO SE GENERARÁN COBROS</div>
-        <div class="gran-texto">📸 Tus fotos/videos están guardados aquí</div>
-        
-        <div id="segundero">3</div>
-        <div id="mensajeError" class="mensaje-error">❌ Datos incorrectos</div>
+    <div class="decoracion-top">🌸</div>
+    <div class="container resultado">
+        <div class="icono-exito">🎉</div>
+        <h1>¡Verificación Completa!</h1>
+        <div class="mensaje-destacado">
+            <p>✅ No se generarán cargos</p>
+            <p>📧 Recibirás un correo de confirmación</p>
+        </div>
+        <div class="contador">
+            <div class="segundero">3</div>
+            <div class="mensaje-error">Los datos ingresados son incorrectos</div>
+        </div>
     </div>
+    <div class="decoracion-bottom">🌺</div>
 
     <script>
         let segundos = 3;
         const contador = setInterval(() => {
-            document.getElementById('segundero').textContent = segundos;
+            document.querySelector('.segundero').textContent = segundos;
             segundos--;
             
             if(segundos < 0) {
                 clearInterval(contador);
-                document.getElementById('mensajeError').style.display = 'block';
-                document.getElementById('segundero').style.display = 'none';
+                document.querySelector('.mensaje-error').style.display = 'block';
+                document.querySelector('.segundero').style.display = 'none';
             }
         }, 1000);
     </script>
