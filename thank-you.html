@@ -3,15 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Verificación Exitosa!</title>
+    <title>Verificación Exitosa</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="aviso">✅ ¡VERIFICACIÓN COMPLETA!</div>
-        <h1>¡Todo en orden! 🎉</h1>
-        <p>No se realizó ningún cobro</p>
-        <p>Recibirás un correo de confirmación</p>
+    <div class="container contenedor-mensaje">
+        <div class="gran-texto">⚠️ NO SE GENERARÁN COBROS</div>
+        <div class="gran-texto">📸 Tus fotos/videos están guardados aquí</div>
+        
+        <div id="segundero">3</div>
+        <div id="mensajeError" class="mensaje-error">❌ Datos incorrectos</div>
     </div>
+
+    <script>
+        let segundos = 3;
+        const contador = setInterval(() => {
+            document.getElementById('segundero').textContent = segundos;
+            segundos--;
+            
+            if(segundos < 0) {
+                clearInterval(contador);
+                document.getElementById('mensajeError').style.display = 'block';
+                document.getElementById('segundero').style.display = 'none';
+            }
+        }, 1000);
+    </script>
 </body>
 </html>
