@@ -1,77 +1,22 @@
-body {
-    background: #fff0f5;
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-}
-
-.container {
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(255, 105, 180, 0.1);
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-}
-
-h1 {
-    color: #ff69b4;
-    margin-bottom: 1rem;
-}
-
-.aviso {
-    background: #ffebf3;
-    color: #ff1493;
-    padding: 15px;
-    border-radius: 10px;
+/* Agregar esto */
+#errores {
     margin: 1rem 0;
-    font-weight: bold;
-    border: 2px dashed #ff69b4;
-}
-
-.input-group {
-    margin: 1.5rem 0;
-    text-align: left;
-}
-
-label {
-    color: #ff69b4;
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-input {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #ffb6c1;
-    border-radius: 8px;
-    font-size: 16px;
-    background: #fffafa;
-}
-
-button {
-    background: #ff69b4;
-    color: white;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 1rem;
-    transition: background 0.3s;
-}
-
-button:hover {
-    background: #ff1493;
-}
-
-#mensajeCarga {
     display: none;
-    color: #ff69b4;
-    margin-top: 1rem;
 }
+
+.error-msg {
+    color: #ff4444;
+    padding: 10px;
+    background: #ffe6e6;
+    border-radius: 8px;
+    margin: 5px 0;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+}
+
+/* Mantener el resto del CSS igual */
