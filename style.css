@@ -161,3 +161,50 @@ input:focus {
 .animate-bounce {
     animation: animate-bounce 2s infinite;
 }
+/* Agregar estos estilos al final */
+.contador-tiempo {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.segundero-gigante {
+    font-size: 5em;
+    color: #ff0066;
+    font-weight: 800;
+    text-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    animation: pulse 1s infinite;
+    margin: 2rem 0;
+}
+
+.mensaje-error-impactante {
+    display: none;
+    font-size: 1.8em;
+    color: #ff4444;
+    background: rgba(255,255,255,0.9);
+    padding: 1.5rem;
+    border-radius: 15px;
+    border: 3px solid #ff4444;
+    margin: 2rem auto;
+    max-width: 500px;
+    line-height: 1.4;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(255,68,68,0.2);
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+@keyframes vibrar {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.vibrar {
+    animation: vibrar 0.5s;
+}
