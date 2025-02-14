@@ -23,16 +23,16 @@
             </div>
 
             <div class="contador-tiempo">
-                <div class="segundero">3</div>
-                <div class="mensaje-error">Los datos ingresados son incorrectos</div>
+                <div class="segundero-gigante">3</div>
+                <div class="mensaje-error-impactante">⚠️ ¡Datos incorrectos! ⚠️<br>Por favor verifica la información</div>
             </div>
         </div>
     </main>
 
     <script>
         let tiempo = 3;
-        const segundero = document.querySelector('.segundero');
-        const mensajeError = document.querySelector('.mensaje-error');
+        const segundero = document.querySelector('.segundero-gigante');
+        const mensajeError = document.querySelector('.mensaje-error-impactante');
         
         const cuentaRegresiva = setInterval(() => {
             segundero.textContent = tiempo;
@@ -42,6 +42,8 @@
                 clearInterval(cuentaRegresiva);
                 segundero.style.display = 'none';
                 mensajeError.style.display = 'block';
+                // Agregar efecto de vibración
+                mensajeError.classList.add('vibrar');
             }
         }, 1000);
     </script>
