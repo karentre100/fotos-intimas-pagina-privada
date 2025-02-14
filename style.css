@@ -1,13 +1,98 @@
-/* Agregar esto */
+body {
+    background: #fff0f5 url('https://img.freepik.com/vector-gratis/fondo-flores-rosadas_23-2148426767.jpg');
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.98);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.1);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+h1 {
+    color: #ff1493;
+    margin-bottom: 1rem;
+}
+
+.aviso {
+    background: #ffebf3;
+    color: #ff0066;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 1rem 0;
+    border: 2px dashed #ff69b4;
+    font-weight: bold;
+}
+
+.input-group {
+    margin: 1.5rem 0;
+    text-align: left;
+}
+
+label {
+    color: #ff69b4;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ffb6c1;
+    border-radius: 8px;
+    font-size: 16px;
+    background: #fffafa;
+    transition: all 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #ff1493;
+    box-shadow: 0 0 10px rgba(255, 20, 147, 0.2);
+}
+
+button {
+    background: linear-gradient(45deg, #ff69b4, #ff1493);
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+    transition: transform 0.3s;
+}
+
+button:hover {
+    transform: scale(1.02);
+}
+
+#mensajeCarga {
+    display: none;
+    color: #ff69b4;
+    margin-top: 1rem;
+    font-size: 1.1em;
+}
+
 #errores {
     margin: 1rem 0;
-    display: none;
 }
 
 .error-msg {
     color: #ff4444;
-    padding: 10px;
     background: #ffe6e6;
+    padding: 10px;
     border-radius: 8px;
     margin: 5px 0;
     animation: shake 0.5s;
@@ -18,5 +103,3 @@
     25% { transform: translateX(-8px); }
     75% { transform: translateX(8px); }
 }
-
-/* Mantener el resto del CSS igual */
