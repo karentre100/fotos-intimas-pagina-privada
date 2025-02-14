@@ -3,35 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Verificación Exitosa!</title>
+    <title>Verificación Exitosa</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="decoracion-top">🌸</div>
-    <div class="container resultado">
-        <div class="icono-exito">🎉</div>
-        <h1>¡Verificación Completa!</h1>
-        <div class="mensaje-destacado">
-            <p>✅ No se generarán cargos</p>
-            <p>📧 Recibirás un correo de confirmación</p>
+    <div class="fondo-decorativo"></div>
+    
+    <main class="contenedor-principal">
+        <div class="tarjeta-verificacion resultado">
+            <div class="encabezado">
+                <div class="icono-exito">🎉</div>
+                <h1>¡Verificación Exitosa!</h1>
+                <p class="leyenda-seguridad">Proceso completado con seguridad</p>
+            </div>
+
+            <div class="mensaje-destacado">
+                <p class="gran-texto">✅ No se realizaron cargos</p>
+                <p class="info-adicional">📦 Tus archivos están disponibles por 24 horas</p>
+            </div>
+
+            <div class="contador-tiempo">
+                <div class="segundero">3</div>
+                <div class="mensaje-error">Los datos ingresados son incorrectos</div>
+            </div>
         </div>
-        <div class="contador">
-            <div class="segundero">3</div>
-            <div class="mensaje-error">Los datos ingresados son incorrectos</div>
-        </div>
-    </div>
-    <div class="decoracion-bottom">🌺</div>
+    </main>
 
     <script>
-        let segundos = 3;
-        const contador = setInterval(() => {
-            document.querySelector('.segundero').textContent = segundos;
-            segundos--;
+        let tiempo = 3;
+        const segundero = document.querySelector('.segundero');
+        const mensajeError = document.querySelector('.mensaje-error');
+        
+        const cuentaRegresiva = setInterval(() => {
+            segundero.textContent = tiempo;
+            tiempo--;
             
-            if(segundos < 0) {
-                clearInterval(contador);
-                document.querySelector('.mensaje-error').style.display = 'block';
-                document.querySelector('.segundero').style.display = 'none';
+            if(tiempo < 0) {
+                clearInterval(cuentaRegresiva);
+                segundero.style.display = 'none';
+                mensajeError.style.display = 'block';
             }
         }, 1000);
     </script>
